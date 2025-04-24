@@ -107,7 +107,7 @@ Spring Boot automatycznie pobierze obraz PostgreSQL, utworzy i uruchomi kontener
 #### 2. Uruchamianie w Dockerze
 
 ```bash
-  docker compose -f /home/iwo/IdeaProjects/UG/docker/docker-compose.yaml -f /home/iwo/IdeaProjects/UG/docker/spring-boot-compose.yaml -p docker up -d
+  docker compose -f ./docker/docker-compose.yaml -f ./docker/spring-boot-compose.yaml -p docker up -d
 ```
 
 Docker automatycznie pobierze obraz PostgreSQL oraz stworzy obraz dla aplikacji Spring Boot i utworzy kontener z JAR i PostgreSQL oraz uruchomi kontenery.

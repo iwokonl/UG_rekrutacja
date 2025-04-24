@@ -1,6 +1,5 @@
 # Instrukcja uruchomienia aplikacji Angular
 ## Uruchomienie z konsoli
-Zainstaluj zależności
 
 ```bash
   npm install
@@ -18,8 +17,7 @@ http://localhost:4200
 W katalogu zawierającym plik docker-compose.yml uruchom:
 
 ```bash
-  docker-compose build
-  docker-compose up
+  docker-compose -f ./docker/docker-compose.yml up
 ```
 Aplikacja będzie dostępna pod adresem:
 http://localhost:4200
