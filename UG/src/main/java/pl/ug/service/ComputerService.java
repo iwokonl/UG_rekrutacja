@@ -61,42 +61,11 @@ public class ComputerService {
 
         ComputerDto computerDto = ComputerMapper.mapComputerToComputerDto(computer);
 
-        synchronized (this) {
-            try {
-                File outputFile = xmlFilePath.toFile();
+        try {
 
-                if (!outputFile.exists()) {
-                    if (outputFile.getParentFile() != null && !outputFile.getParentFile().exists()) {
-                        outputFile.getParentFile().mkdirs();
-                    }
-                    outputFile.createNewFile(); //
-                    log.info("Created new XML file: {}", outputFile.getAbsolutePath());
-                }
-
-                List<ComputerDtoXml> existingComputers = outputFile.length() > 0
-                        ? xmlDeserializer.readComputersFromFile(outputFile)
-                        : List.of();
-
-                List<ComputerDtoXml> updatedComputers = new ArrayList<>(existingComputers);
-                updatedComputers.add(ComputerMapper.mapComputerToComputerDtoXml(computer));
-
-                updatedComputers.stream()
-                        .forEach(e -> {
-                            Set<ConstraintViolation<ComputerDtoXml>> violations = validator.validate(e);
-                            if (!violations.isEmpty()) {
-                                throw new GeneralAppException(
-                                        "Validation failed for computer: " + e.name() + ". Violations: " + violations,
-                                        HttpStatus.BAD_REQUEST
-                                );
-                            }
-                        });
-
-                xmlDeserializer.writeComputersToFile(updatedComputers, outputFile);
-                log.info("Added computer to XML file: {}", outputFile.getAbsolutePath());
-            } catch (IOException e) {
-                log.error("Failed to write computer to XML file: {}", e.getMessage(), e);
-                throw new GeneralAppException("Failed to write computer to XML file", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            xmlDeserializer.addComputerToFile(computer);
+        } catch (IOException e) {
+            throw new GeneralAppException("Problem with writing to file",HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return computerDto;
