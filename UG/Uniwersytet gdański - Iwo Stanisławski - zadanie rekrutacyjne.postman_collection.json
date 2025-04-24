@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "b6b4842f-2d6e-4d31-826e-69e16026837d",
+		"name": "Uniwersytet Gdański - Iwo Stanisławski - zadanie rekrutacyjne",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43980365"
+	},
+	"item": [
+		{
+			"name": "Wyszukiwanie po dacie zaksięgowania i nazwie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/computer/searchByNameFragmentAndDateRangePosting",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"computer",
+						"searchByNameFragmentAndDateRangePosting"
+					],
+					"query": [
+						{
+							"key": "dateFrom",
+							"value": "2025-01-15",
+							"disabled": true
+						},
+						{
+							"key": "dateTo",
+							"value": "2026-01-22",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "hpp",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dodawanie komputera",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"asd\",\n    \"currencyConversionDate\": \"\",\n    \"postingDate\": \"\",\n    \"priceInUsd\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/computer/saveComputer",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"computer",
+						"saveComputer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

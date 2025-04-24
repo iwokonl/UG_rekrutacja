@@ -1,0 +1,17 @@
+services:
+  ug_app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://ug_db:5432/ug
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+    ports:
+      - '8080:8080'
+    depends_on:
+      - ug_db
+    restart: always
+
+volumes:
+  postgres_data:

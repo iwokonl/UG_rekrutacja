@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    default: main
+    active: recruitment
+  docker:
+    compose:
+      file: docker/spring-boot-compose.yaml
