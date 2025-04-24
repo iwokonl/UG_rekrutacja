@@ -4,7 +4,6 @@ import {NativeDateAdapter} from '@angular/material/core';
 
 @Injectable()
 export class PolishDateAdapter extends NativeDateAdapter {
-  // Pełne nazwy miesięcy
   override getMonthNames(style: 'long' | 'short' | 'narrow'): string[] {
     const long = [
       'styczeń', 'luty', 'marzec', 'kwiecień',
@@ -32,7 +31,6 @@ export class PolishDateAdapter extends NativeDateAdapter {
     }
   }
 
-  // Pełne i skrócone nazwy dni tygodnia
   override getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
     const long = [
       'niedziela', 'poniedziałek', 'wtorek', 'środa',
@@ -57,7 +55,6 @@ export class PolishDateAdapter extends NativeDateAdapter {
     }
   }
 
-  // Ustawiamy pierwszy dzień tygodnia na poniedziałek
   override getFirstDayOfWeek(): number {
     return 1;
   }
