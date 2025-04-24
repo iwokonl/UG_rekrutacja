@@ -1,0 +1,32 @@
+<div class="form-container" fxLayout="column" fxLayoutGap="16px">
+  <form #computerForm="ngForm" (ngSubmit)="onSubmit(computerForm)" fxLayout="column" fxLayoutGap="16px">
+    <mat-form-field appearance="outline">
+      <mat-label>Nazwa</mat-label>
+      <input [(ngModel)]="computer.name" matInput name="name" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data przeliczenia waluty</mat-label>
+      <input [(ngModel)]="computer.currencyConversionDate" [matDatepicker]="picker1" matInput
+             name="currencyConversionDate"/>
+      <mat-datepicker-toggle [for]="picker1" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data zaksięgowania</mat-label>
+      <input [(ngModel)]="computer.postingDate" [matDatepicker]="picker2" matInput name="postingDate"/>
+      <mat-datepicker-toggle [for]="picker2" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cena w USD</mat-label>
+      <input [(ngModel)]="computer.priceInUsd" matInput name="priceInUsd" required type="number"/>
+    </mat-form-field>
+
+    <div fxLayoutAlign="end">
+      <button color="primary" mat-raised-button type="submit">Dodaj komputer</button>
+    </div>
+  </form>
+</div>

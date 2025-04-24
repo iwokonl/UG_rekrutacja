@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import {Injectable} from '@angular/core';
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,10 @@ export class AxiosService {
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: 'http://localhost:8080/',
-      timeout: 5000
+      timeout: 5000,
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
   }
 
@@ -23,15 +26,23 @@ export class AxiosService {
       throw error;
     }
   }
+
   async getWithParams<T>(url: string, params?: Record<string, any>, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response = await this.axiosInstance.get<T>(url, { ...config, params });
+      const response = await this.axiosInstance.get<T>(url, {
+        ...config,
+        params,
+        headers: {
+          ...config?.headers,
+        }
+      });
       return response.data;
     } catch (error) {
       console.error('Błąd podczas wykonywania GET z parametrami:', error);
       throw error;
     }
   }
+
   async post<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<T> {
     try {
       const response = await this.axiosInstance.post<T>(url, data, config);
@@ -58,6 +69,16 @@ export class AxiosService {
       return response.data;
     } catch (error) {
       console.error('Błąd podczas wykonywania DELETE:', error);
+      throw error;
+    }
+  }
+
+  async patch<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<T> {
+    try {
+      const response = await this.axiosInstance.patch<T>(url, data, config);
+      return response.data;
+    } catch (error) {
+      console.error('Błąd podczas wykonywania PATCH:', error);
       throw error;
     }
   }

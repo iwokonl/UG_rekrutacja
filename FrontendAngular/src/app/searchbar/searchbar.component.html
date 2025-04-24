@@ -1,28 +1,80 @@
-<div>
-  <input
-    type="text"
-    placeholder="Wyszukaj..."
-    [(ngModel)]="searchQuery"
-    (input)="onSearch()"
-  />
-  <input
-    type="date"
-    [(ngModel)]="dateFrom"
-    (change)="onSearch()"
-  />
-  <input
-    type="date"
-    [(ngModel)]="dateTo"
-    (change)="onSearch()"
-  />
-</div>
+<div class="search-container">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Wpisz tutaj coś</mat-label>
+    <input
+      (input)="onSearch()"
+      (keydown.enter)="onSearch()"
+      [(ngModel)]="searchQuery"
+      matInput
+      placeholder="Wyszukaj..."
+      type="text"
+    />
+  </mat-form-field>
 
-<ul>
-  <li *ngFor="let item of filteredItems">
-    <strong>{{ item.name }}</strong><br />
-    Cena w PLN: {{ item.priceInPln }}<br />
-    Cena w USD: {{ item.priceInUsd }}<br />
-    Data publikacji: {{ item.postingDate | date:'yyyy-MM-dd' }}<br />
-    Data przeliczenia waluty: {{ item.currencyConversionDate | date:'yyyy-MM-dd' }}
-  </li>
-</ul>
+  <mat-form-field appearance="outline" class="date-field">
+    <mat-label>Data od</mat-label>
+    <input
+      (dateChange)="onSearch()"
+      [(ngModel)]="dateFrom"
+      [matDatepicker]="pickerFrom"
+      matInput
+    />
+    <mat-datepicker-toggle [for]="pickerFrom" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #pickerFrom></mat-datepicker>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="date-field">
+    <mat-label>Data do</mat-label>
+    <input
+      (dateChange)="onSearch()"
+      [(ngModel)]="dateTo"
+      [matDatepicker]="pickerTo"
+      matInput
+    />
+    <mat-datepicker-toggle [for]="pickerTo" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #pickerTo></mat-datepicker>
+  </mat-form-field>
+
+  <!--  <button mat-icon-button matSuffix (click)="onSearch()">-->
+  <!--    <p>search</p>-->
+  <!--  </button>-->
+</div>
+<table [dataSource]="filteredItems" class="mat-elevation-z8" mat-table>
+  <!-- Kolumna Nazwa -->
+  <ng-container matColumnDef="name">
+    <th *matHeaderCellDef mat-header-cell>Nazwa</th>
+    <td *matCellDef="let item" mat-cell>{{ item.name }}</td>
+  </ng-container>
+
+  <!-- Kolumna Cena w PLN -->
+  <ng-container matColumnDef="priceInPln">
+    <th *matHeaderCellDef mat-header-cell>Cena w PLN</th>
+    <td *matCellDef="let item" mat-cell>{{ item.priceInPln }}</td>
+  </ng-container>
+
+  <!-- Kolumna Cena w USD -->
+  <ng-container matColumnDef="priceInUsd">
+    <th *matHeaderCellDef mat-header-cell>Cena w USD</th>
+    <td *matCellDef="let item" mat-cell>{{ item.priceInUsd }}</td>
+  </ng-container>
+
+  <!-- Kolumna Data publikacji -->
+  <ng-container matColumnDef="postingDate">
+    <th *matHeaderCellDef mat-header-cell>Data zaksięgowania</th>
+    <td *matCellDef="let item" mat-cell>{{ item.postingDate | date:'dd.MM.yyyy' }}</td>
+  </ng-container>
+
+  <!-- Kolumna Data przeliczenia waluty -->
+  <ng-container matColumnDef="currencyConversionDate">
+    <th *matHeaderCellDef mat-header-cell>Data przeliczenia waluty</th>
+    <td *matCellDef="let item" mat-cell>{{ item.currencyConversionDate | date:'dd.MM.yyyy' }}</td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
+
+<div *ngIf="filteredItems.length === 0" class="emptyResoult">
+  <p>Brak wyników dla podanych kryteriów wyszukiwania.</p>
+</div>

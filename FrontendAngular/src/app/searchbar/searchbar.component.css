@@ -1,0 +1,34 @@
+table {
+  width: 100%;
+  table-layout: fixed; /* Ustawia stałą szerokość kolumn */
+}
+
+* {
+  margin-top: 5px;
+}
+
+th, td {
+  color: #0028b9;
+  overflow: hidden; /* Ukrywa nadmiar tekstu */
+  text-overflow: ellipsis; /* Dodaje wielokropek, jeśli tekst jest za długi */
+  white-space: nowrap; /* Zapobiega zawijaniu tekstu */
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 20%; /* Szerokość kolumny "Nazwa" */
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 15%; /* Szerokość kolumny "Cena w PLN" */
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 15%; /* Szerokość kolumny "Cena w USD" */
+}
+
+.emptyResoult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0028b9;
+}

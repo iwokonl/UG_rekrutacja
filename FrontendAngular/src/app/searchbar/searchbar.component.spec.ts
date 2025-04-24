@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SearchbarComponent } from './searchbar.component';
+import {SearchbarComponent} from './searchbar.component';
 
 describe('SearchbarComponent', () => {
   let component: SearchbarComponent;
@@ -10,7 +10,7 @@ describe('SearchbarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SearchbarComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchbarComponent);
     component = fixture.componentInstance;

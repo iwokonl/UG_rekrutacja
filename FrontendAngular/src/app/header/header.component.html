@@ -1,7 +1,9 @@
-<mat-toolbar color="primary" class="header">
-  <div class='logo' >
-    <img src="https://ug.edu.pl/sites/ug.edu.pl/files/color/ug_theme-aa8f8260/logo.svg"
-         alt="Logo Uniwersytet Gdański" style="height: 40px; margin-right: 10px;">
+<mat-toolbar class="header" color="primary">
+  <div class='logo' routerLink="/">
+    <img alt="Logo Uniwersytet Gdański"
+         src="https://ug.edu.pl/sites/ug.edu.pl/files/color/ug_theme-aa8f8260/logo.svg" style="height: 40px; margin-right: 10px;">
   </div>
-  <span>Zadanie rekrutacyjne :)</span>
+  <!--  <span>Zadanie rekrutacyjne :)</span>-->
+  <p mat-button routerLink="/searchbar" style="margin-left: auto;">Wyszukiwanie</p>
+  <p mat-button routerLink="/addComputer" style="margin-left: auto;">Dodaj komputer</p>
 </mat-toolbar>
