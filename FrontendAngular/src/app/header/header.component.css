@@ -1,0 +1,19 @@
+.header {
+  background-color: #0028b9;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100px;
+  text-align: center;
+}
+
+.logo {
+  margin-left: 40px;
+  transform: scale(1.7);
+}
+
+.header span {
+  margin-left: 40px; /* Dodaje odstęp między logo a tekstem */
+}

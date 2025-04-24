@@ -1,0 +1,28 @@
+<div>
+  <input
+    type="text"
+    placeholder="Wyszukaj..."
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+  />
+  <input
+    type="date"
+    [(ngModel)]="dateFrom"
+    (change)="onSearch()"
+  />
+  <input
+    type="date"
+    [(ngModel)]="dateTo"
+    (change)="onSearch()"
+  />
+</div>
+
+<ul>
+  <li *ngFor="let item of filteredItems">
+    <strong>{{ item.name }}</strong><br />
+    Cena w PLN: {{ item.priceInPln }}<br />
+    Cena w USD: {{ item.priceInUsd }}<br />
+    Data publikacji: {{ item.postingDate | date:'yyyy-MM-dd' }}<br />
+    Data przeliczenia waluty: {{ item.currencyConversionDate | date:'yyyy-MM-dd' }}
+  </li>
+</ul>
